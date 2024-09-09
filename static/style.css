@@ -1,0 +1,402 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.container {
+  max-width: 600px;
+  margin: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h2 {
+  margin-bottom: 5px;
+}
+
+.container h3 {
+  margin-top: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.subject-button, .back-button, .clear-chat-button, .send-message-button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.subject-button:hover, .back-button:hover, .clear-chat-button:hover, .send-message-button:hover {
+  background-color: #0056b3;
+}
+
+.chat-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100% - 130px);
+  margin-top: 20px;
+}
+
+.input-box {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-box textarea {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex-grow: 1;
+  margin-right: 10px;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.5;
+  height: auto;
+  max-height: 90px;
+  min-height: 30px;
+  box-sizing: border-box;
+}
+
+.input-box input[type="file"] {
+  display: none;
+}
+
+.input-box label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 30px;
+  width: 30px;
+  margin-right: 2px;
+}
+
+.input-box label:hover {
+  background-color: #0056b3;
+}
+
+.input-box label img {
+  width: 15px;
+  height: 15px;
+  filter: invert(100%);
+}
+
+.input-box button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 30px;
+  width: 30px;
+  margin-right: 2px;
+}
+
+.input-box button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.message {
+  position: relative;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 80%;
+  display: block;
+  clear: both;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.message::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #a5cdfa;
+  margin-left: auto;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  min-height: 60px;
+}
+
+.user::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 20px 0 20px 11px;
+  border-color: transparent transparent transparent #a5cdfa;
+  right: -10px;
+  top: 10px;
+}
+
+.bot {
+  align-self: flex-start;
+  background-color: #F1F0F0;
+  margin-right: auto;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  min-height: 60px; /* Минимальная высота для двух строк текста */
+}
+
+.bot::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 20px 11px 20px 0;
+  border-color: transparent #F1F0F0 transparent transparent;
+  left: -10px;
+  top: 10px;
+}
+
+.thinking {
+  min-height: 50px; /* Минимальная высота для двух строк текста */
+  height: 50px; /* Установить фиксированную высоту */
+  display: flex;
+  align-items: center;
+}
+
+
+
+.typewriter span {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: black }
+}
+
+.centered-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.chat-container {
+  position: relative;
+  z-index: 1;
+  width: 40vw;
+  height: 90vh;
+  max-height: 90vh;
+  max-width: 90vw;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+      width: 95vw;
+      height: 85vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-container {
+      width: 100vw;
+      height: 80vh;
+  }
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.back-button, .clear-chat-button {
+  width: 48%;
+}
+
+.flag-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.flag-button {
+  flex: 1;
+  margin: 0 5px;
+  height: 30px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  filter: grayscale(70%);
+  transform: scale(0.8);
+  border: 0.8px solid #808080; /* No border when not selected */
+}
+
+.flag-button img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.flag-button:hover {
+  filter: grayscale(40%);
+  transform: scale(1);
+}
+
+.flag-button.selected {
+  filter: grayscale(40%);
+  transform: scale(1.2);
+  border: 0.8px solid #808080; /* Smaller border width when selected */
+}
+
+
+.flag-button:not(.selected):hover {
+  filter: grayscale(40%);
+  transform: scale(0.9);
+  border: 0.8px solid #808080; /* Smaller border width when selected */
+}
+
+h2 {
+  position: relative;
+  font-size: 1.5em;
+  color: #000;
+  text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input-box button.record-button {
+  background-color: #007BFF;
+}
+
+.input-box button.recording {
+  background-color: red;
+}
+
+/* Cropping interface styles */
+body.crop-active::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 128, 128, 0.5);
+  z-index: 5;
+}
+
+#cropContainer {
+  /* display: none; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  /* top: 20px; /* added px for proper positioning */ 
+  /* left: 20px; /* added px for proper positioning */
+  width: 70%;
+  height: 70%;
+  background: rgba(204, 25, 25, 0.8);
+  z-index: 10;
+}
+
+#cropImage {
+  max-width: 90%;
+  max-height: 80%;
+  margin-bottom: 20px;
+}
+
+#cropButton, #cancelCropButton {
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание по центру */
+  justify-content: center; /* Горизонтальное выравнивание по центру */
+  width: 120px; /* Установите желаемую ширину */
+  margin: 10px;
+  padding: 10px;
+  background-color: #007bff; /* Set background color to blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#cropButton:hover, #cancelCropButton:hover {
+  background-color: #0056b3;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container i.fas.fa-crop {
+  margin-right: 20px; /* Расстояние между иконками */
+  line-height: 1; /* Убираем лишние отступы вокруг иконки */
+}
+
+#buttonContainer {
+    width: 100%;
+    background-color: #afacac; /* Red background for the button container */
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}

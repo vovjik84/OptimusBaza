@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Optimus: Ai Tutor and Educational Chatbot</title>
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" /> <!-- Cropper.js CSS -->
+  <script>
+      MathJax = {
+          tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+              fontCache: 'global'
+          }
+      };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- <div id="chat-widget-container" data-theme-color="#1D1D1B" data-hover-color="#C82C2E" data-user-id="attilapersonaltraining"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://robert-kloepsch.github.io/swiss_bot_widget/dist/bundle.js"></script> -->
+</head>
+
+<body onload="initializePage()">
+    <div id="startPage">
+        <div class="container">
+            <div id="subjectSelection">
+                <h2>OPTIMUS 1.1</h2>
+                <h3></h3>
+                <!-- Subject selection buttons -->
+                <button class="subject-button" id="subjectHistory" onclick="selectSubject('History')">History</button>
+                <button class="subject-button" id="subjectMath" onclick="selectSubject('Math')">Math</button>
+                <button class="subject-button" id="subjectEnglish" onclick="selectSubject('English')">English</button>
+                <button class="subject-button" id="subjectGeography" onclick="selectSubject('Geography')">Geography</button>
+                <!-- Flag buttons for country selection -->
+                <div class="flag-buttons">
+                    <button class="flag-button" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg');" onclick="selectCountry('Russia')"></button>
+                    <button class="flag-button" style="background-image: url('https://i.postimg.cc/9Qf8H1kD/1024151-free-union-jack-wallpaper-3274x2026.jpg');" onclick="selectCountry('UK')"></button>
+                    <button class="flag-button" style="background-image: url('https://i.postimg.cc/3J80tqyD/kazakhstan-flag-13-1024x614.jpg');" onclick="selectCountry('Kazakhstan')"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chatPage" class="hidden">
+        <div class="chat-container">
+            <h2 id="selectedSubject">Subject</h2> 
+            <div id="chatBox" class="chat-box">
+                <!-- Пример сообщения "Optimus thinking..." -->
+                <div class="message bot thinking">
+                    Optimus thinking...
+                </div>
+            </div>
+            <div class="input-box">
+                <textarea id="userInput" placeholder="Type your message here..."></textarea>
+                <button id="sendMessageButton" class="send-message-button" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <label for="userImage"><img src="https://img.icons8.com/ios-glyphs/30/000000/camera--v1.png" alt="Photo Icon" /></label>
+                <input type="file" id="userImage" accept="image/*" style="display: none;" />
+            </div>
+            <div class="bottom-buttons">
+                <button class="clear-chat-button" id="clearChatButton" onclick="clearChat()">Clear Chat</button>
+                <button class="back-button" id="backButton" onclick="goBack()">Back to Beginning</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cropping interface -->
+    <div id="cropContainer" class="hidden">
+        <img id="cropImage" />
+        <div id="buttonContainer">
+            <button id="cropButton" onclick="cropImage()">
+                <span class="icon-container">
+                    <!-- Удалена иконка обрезки -->
+                    <i class="fas fa-paper-plane"></i>
+                </span>
+            </button>
+
+            <button id="cancelCropButton" onclick="cancelCrop()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Markdown parser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script> <!-- Cropper.js JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
